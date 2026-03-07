@@ -14,8 +14,9 @@ public class so_plants : ScriptableObject
     [SerializeField] bool killable_;
     [SerializeField] bool attracts_;
 
-    [SerializeField] attkType attk_;
+    [SerializeField] public attkType attk_;
 
     [SerializeField] int hp_;
     [SerializeField] int dmg_;
+    [SerializeField] int range_;
 }
