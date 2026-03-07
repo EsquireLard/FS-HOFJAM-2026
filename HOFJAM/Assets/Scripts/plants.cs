@@ -13,6 +13,7 @@ public class plants : MonoBehaviour, IDamage
     void Start()
     {
         dmgTimer = 0;
+        dmgTimerStart = false;
     }
 
     // Update is called once per frame
@@ -73,5 +74,10 @@ public class plants : MonoBehaviour, IDamage
     public void Take_Damage(int amount)
     {
         
+    }
+
+    public void Die()
+    {
+
     }
 }
