@@ -12,6 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c6f74d5dece32e241998056db32810b5, type: 3}
   m_Name: so_Zombie
   m_EditorClassIdentifier: Assembly-CSharp::so_monsters
-  prefab_: {fileID: 0}
+  prefab_: {fileID: 4979976331048235764, guid: bac0d538bb7176b4c90a60cb03e2c583, type: 3}
   hp_: 0
   dmg_: 0
