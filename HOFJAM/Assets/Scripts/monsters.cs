@@ -13,8 +13,13 @@ public class monsters : MonoBehaviour, ITarget
     const float attkRate = 1.0f;
 
     [SerializeField] so_monsters stats;
+
     [SerializeField] bool debug_AttackCondition;
+    [SerializeField] bool debug_TileOccupied;
     [SerializeField] GameObject debug_AttackTarget;
+
+    spawnDir spawn;
+    Tile dest;
 
     float curr_hp;
     float attkTimer;
@@ -65,7 +70,57 @@ public class monsters : MonoBehaviour, ITarget
 
     void Set_Spawn_Direction()
     {
+        if(transform.position.y > 10.0f)//north
+        {
+            spawn = spawnDir.North;
+        }
+        else if (transform.position.y < 0)//south
+        {
+            spawn = spawnDir.South;
+        }
+        else if (transform.position.x < 0)//west
+        {
+            spawn = spawnDir.West;
+        }
+        else//east
+        {
+            spawn = spawnDir.East;
+        }
+        Set_Destination();
+    }
 
+    void Set_Destination()
+    {
+        Vector2 currTilePos = new Vector2(Mathf.Floor(transform.position.x), Mathf.Floor(transform.position.y));
+        Tile currTile;
+        do
+        {
+            switch(spawn)
+            {
+                case spawnDir.North:
+                    currTilePos.y -= 1.0f;
+                    break;
+
+                case spawnDir.South:
+                    currTilePos.y += 1.0f;
+                    break;
+
+                case spawnDir.West:
+                    currTilePos.x += 1.0f;
+                    break;
+
+                case spawnDir.East:
+                    currTilePos.x -= 1.0f;
+                    break;
+                default:
+                    break;
+            }
+            currTile = TileManager.instance.GetTileAtPosition(currTilePos);
+            if (debug_TileOccupied)
+            {
+                dest = currTile;
+            }
+        } while (dest = null);
     }
 
     public void Lured()
@@ -76,11 +131,11 @@ public class monsters : MonoBehaviour, ITarget
     public void Take_Damage(int amount)
     {
         curr_hp -= amount;
-        if (curr_hp <= 0)
+        Debug.Log("a monster just took damage");
+        if (curr_hp <= 0 && !dying)
         {
             Die();
         }
-        Debug.Log("a monster just took damage");
     }
 
     public void Take_Damage(int amount, float rate, float timeDOT)
@@ -101,10 +156,11 @@ public class monsters : MonoBehaviour, ITarget
     IEnumerator DOT(int amount, float rate)
     {
         dot = true;
-        while (dmgTimer > 0)
+        while (dmgTimer > 0 && !dying)
         {
             curr_hp -= amount;
-            if (curr_hp <= 0)
+            Debug.Log("a monster just took damage");
+            if (curr_hp <= 0 && !dying)
             {
                 Die();
             }
