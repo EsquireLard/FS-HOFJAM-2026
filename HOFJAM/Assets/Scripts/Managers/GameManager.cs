@@ -10,8 +10,10 @@ public class GameManager : MonoBehaviour
 
     [SerializeField] public Transform cam;
 
+    public Vector2 mousePosition;
 
-    private plants selectedPlant;
+    public plants selectedPlant;
+    public Tile hoverTile;
 
     void Awake()
     {
@@ -22,6 +24,11 @@ public class GameManager : MonoBehaviour
     {
         ChangeState(GameState.GenerateGrid);
     }
+
+    //void Update()
+    //{
+    //    mousePosition = (Vector2)Camera.main.WorldToScreenPoint(Input.mousePosition);
+    //}
 
     public void ChangeState(GameState newState)
     {
