@@ -206,7 +206,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 435235805690222771, guid: bac0d538bb7176b4c90a60cb03e2c583, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0
+      value: 11.03
       objectReference: {fileID: 0}
     - target: {fileID: 435235805690222771, guid: bac0d538bb7176b4c90a60cb03e2c583, type: 3}
       propertyPath: m_LocalPosition.y
@@ -248,6 +248,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Zombie
       objectReference: {fileID: 0}
+    - target: {fileID: 4979976331048235764, guid: bac0d538bb7176b4c90a60cb03e2c583, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -267,7 +271,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3571950346826817527, guid: 121dd4ac4cb29994faffd5669d0dd6f6, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0
+      value: -6.17
       objectReference: {fileID: 0}
     - target: {fileID: 3571950346826817527, guid: 121dd4ac4cb29994faffd5669d0dd6f6, type: 3}
       propertyPath: m_LocalPosition.y

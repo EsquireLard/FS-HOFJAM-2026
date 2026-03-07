@@ -23,6 +23,7 @@ public class GameManager : MonoBehaviour
     void Start()
     {
         ChangeState(GameState.GenerateGrid);
+        Time.timeScale = 1.0f;
     }
 
     //void Update()
