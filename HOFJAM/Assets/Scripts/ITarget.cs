@@ -1,16 +1,8 @@
 using UnityEngine;
 
-public class ITarget : MonoBehaviour
+public interface ITarget
 {
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
+    void Take_Damage(int amount);
+    void Take_Damage(int amount, float rate, float timeDOT);
+    void Lured();
 }
