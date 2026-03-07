@@ -9,11 +9,16 @@ public class plants : MonoBehaviour, IDamage
 
     bool dmgTimerStart;
     float dmgTimer;
+    bool dragging;
+
+    public Tile currentTile;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
         dmgTimer = 0;
         dmgTimerStart = false;
+
+        dragging = false;
     }
 
     // Update is called once per frame
@@ -26,6 +31,13 @@ public class plants : MonoBehaviour, IDamage
         if (debug_AttackCondition)
         {
             Attack(debug_Target);
+        }
+
+        if (dragging)
+        {
+            var mousePosition = (Vector2)Camera.main.ScreenToWorldPoint(Input.mousePosition);
+            Debug.Log(mousePosition);
+            transform.position = mousePosition;
         }
     }
 
@@ -78,6 +90,24 @@ public class plants : MonoBehaviour, IDamage
 
     public void Die()
     {
+
+    }
+
+    void OnMouseDown()
+    {
+        dragging = true;
+        GameManager.instance.SetSelectedUnit(this);
+        gameObject.GetComponent<BoxCollider2D>().enabled = false;
+    }
+    void OnMouseUp()
+    {
+        dragging = false;
+        gameObject.GetComponent<BoxCollider2D>().enabled = true;
+        if (GameManager.instance.hoverTile != null)
+        {
+            GameManager.instance.hoverTile.SetUnit(this);
+        }
+        GameManager.instance.SetSelectedUnit(null);
 
     }
 }
