@@ -6,10 +6,9 @@ public class TileManager : MonoBehaviour
     public static TileManager instance;
 
     [SerializeField] int width, height;
-    [SerializeField] Tile grassTile, fertileTile, cauldronTile;
-    [SerializeField] List<Vector2> fertileTileList, cauldronTileList;
+    [SerializeField] Tile grassTile, fertileTile, cauldronTile, irrigationTile;
+    [SerializeField] List<Vector2> fertileTileList, cauldronTileList, irrigationTileList;
 
-    [SerializeField] private Transform cam;
 
     private Dictionary<Vector2, Tile> tiles;
 
@@ -35,6 +34,10 @@ public class TileManager : MonoBehaviour
                 {
                     tileToSpawn = cauldronTile;
                 }
+                else if (irrigationTileList.Contains(currentTile))
+                {
+                    tileToSpawn = irrigationTile;
+                }
                 else
                 {
                     tileToSpawn = grassTile;
@@ -49,7 +52,7 @@ public class TileManager : MonoBehaviour
             }
         }
 
-        cam.transform.position = new Vector3((float)width / 2 - 0.5f, (float)height / 2 - 0.5f, -10);
+        GameManager.instance.cam.transform.position = new Vector3((float)width / 2 - 0.5f, (float)height / 2 - 0.5f, -10);
 
         GameManager.instance.ChangeState(GameState.Running);
     }

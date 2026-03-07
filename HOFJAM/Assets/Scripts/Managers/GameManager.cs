@@ -8,6 +8,11 @@ public class GameManager : MonoBehaviour
     public static GameManager instance;
     public GameState GameState;
 
+    [SerializeField] public Transform cam;
+
+
+    private plants selectedPlant;
+
     void Awake()
     {
         instance = this;
@@ -31,6 +36,11 @@ public class GameManager : MonoBehaviour
             default:
                 throw new ArgumentOutOfRangeException(nameof(newState), newState, null);
         }
+    }
+
+    public void SetSelectedUnit(plants plant)
+    {
+        selectedPlant = plant;
     }
 }
 

@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1001 &8320832818992736026
+--- !u!1001 &8260195081783147611
 PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
@@ -50,19 +50,19 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7486281202557562110, guid: bc80ca2ad3be6b248a82a7e62aa22129, type: 3}
       propertyPath: m_Color.b
-      value: 0.24917914
+      value: 0.4716981
       objectReference: {fileID: 0}
     - target: {fileID: 7486281202557562110, guid: bc80ca2ad3be6b248a82a7e62aa22129, type: 3}
       propertyPath: m_Color.g
-      value: 0.24917914
+      value: 0.45181495
       objectReference: {fileID: 0}
     - target: {fileID: 7486281202557562110, guid: bc80ca2ad3be6b248a82a7e62aa22129, type: 3}
       propertyPath: m_Color.r
-      value: 0.27044016
+      value: 0.38121513
       objectReference: {fileID: 0}
     - target: {fileID: 7898771113467937149, guid: bc80ca2ad3be6b248a82a7e62aa22129, type: 3}
       propertyPath: m_Name
-      value: Cauldron Tile
+      value: Irrigation Tile
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -70,34 +70,34 @@ PrefabInstance:
     m_AddedComponents:
     - targetCorrespondingSourceObject: {fileID: 7898771113467937149, guid: bc80ca2ad3be6b248a82a7e62aa22129, type: 3}
       insertIndex: -1
-      addedObject: {fileID: 4887372178910200436}
+      addedObject: {fileID: -4687363693906394238}
   m_SourcePrefab: {fileID: 100100000, guid: bc80ca2ad3be6b248a82a7e62aa22129, type: 3}
---- !u!212 &1485365760369478628 stripped
+--- !u!212 &1533060879912554661 stripped
 SpriteRenderer:
   m_CorrespondingSourceObject: {fileID: 7486281202557562110, guid: bc80ca2ad3be6b248a82a7e62aa22129, type: 3}
-  m_PrefabInstance: {fileID: 8320832818992736026}
+  m_PrefabInstance: {fileID: 8260195081783147611}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &2226919130804971111 stripped
+--- !u!1 &2250684719735995686 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 7898771113467937149, guid: bc80ca2ad3be6b248a82a7e62aa22129, type: 3}
-  m_PrefabInstance: {fileID: 8320832818992736026}
+  m_PrefabInstance: {fileID: 8260195081783147611}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &4887372178910200436
+--- !u!114 &-4687363693906394238
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2226919130804971111}
+  m_GameObject: {fileID: 2250684719735995686}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5effa4623d1b8564989a7f6f317f7f92, type: 3}
+  m_Script: {fileID: 11500000, guid: 4d713a8feca4ac84ea584f6f27a28984, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::CauldronTile
-  renderer: {fileID: 1485365760369478628}
-  highlight: {fileID: 6728413672844708001}
---- !u!1 &6728413672844708001 stripped
+  m_EditorClassIdentifier: Assembly-CSharp::IrrigationTile
+  renderer: {fileID: 1533060879912554661}
+  highlight: {fileID: 6682130611843355616}
+--- !u!1 &6682130611843355616 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 3321872888645234619, guid: bc80ca2ad3be6b248a82a7e62aa22129, type: 3}
-  m_PrefabInstance: {fileID: 8320832818992736026}
+  m_PrefabInstance: {fileID: 8260195081783147611}
   m_PrefabAsset: {fileID: 0}
