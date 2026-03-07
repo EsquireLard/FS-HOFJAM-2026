@@ -1,4 +1,6 @@
 using System.Collections;
+using Unity.VisualScripting;
+using Unity.XR.Oculus.Input;
 using UnityEngine;
 
 public class monsters : MonoBehaviour, ITarget
@@ -11,6 +13,7 @@ public class monsters : MonoBehaviour, ITarget
         West
     }
     const float attkRate = 1.0f;
+    const float moveSpeed = 0.01f;
 
     [SerializeField] so_monsters stats;
 
@@ -27,6 +30,7 @@ public class monsters : MonoBehaviour, ITarget
     bool attkTimerStart;
     bool dot;
     bool dying;
+    bool spawning;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -34,8 +38,9 @@ public class monsters : MonoBehaviour, ITarget
         attkTimer = 0;
         dmgTimer = 0;
         attkTimerStart = false;
+        spawning = true;
         curr_hp = stats.hp_;
-        Set_Spawn_Direction();
+        StartCoroutine(SETSPAWNDIR());
     }
 
     // Update is called once per frame
@@ -49,10 +54,38 @@ public class monsters : MonoBehaviour, ITarget
         {
             dmgTimer -= Time.deltaTime;
         }
-        if (debug_AttackCondition)
+        if (!spawning)
         {
-            Attack(debug_AttackTarget);
+            if (debug_AttackCondition || Destination_Check())
+            {
+                Attack(debug_AttackTarget);
+            }
+            else
+            {
+                Move();
+            }
         }
+    }
+
+    void Move()
+    {
+        Vector2 moveDir = Vector2.zero;
+        switch (spawn)
+        {
+            case spawnDir.North:
+                moveDir = Vector2.down;
+                break;
+            case spawnDir.South:
+                moveDir = Vector2.up;
+                break;
+            case spawnDir.West:
+                moveDir = Vector2.right;
+                break;
+            case spawnDir.East:
+                moveDir = Vector2.left;
+                break;
+        }
+        transform.Translate(moveDir.x * moveSpeed, moveDir.y * moveSpeed, 0.0f);
     }
 
     void Attack(GameObject target)
@@ -70,15 +103,15 @@ public class monsters : MonoBehaviour, ITarget
 
     void Set_Spawn_Direction()
     {
-        if(transform.position.y > 10.0f)//north
+        if(transform.position.y == 9.0f)//north
         {
             spawn = spawnDir.North;
         }
-        else if (transform.position.y < 0)//south
+        else if (transform.position.y == -1.0f)//south
         {
             spawn = spawnDir.South;
         }
-        else if (transform.position.x < 0)//west
+        else if (transform.position.x == -1.0f)//west
         {
             spawn = spawnDir.West;
         }
@@ -87,40 +120,72 @@ public class monsters : MonoBehaviour, ITarget
             spawn = spawnDir.East;
         }
         Set_Destination();
+        spawning = false;
     }
 
     void Set_Destination()
     {
         Vector2 currTilePos = new Vector2(Mathf.Floor(transform.position.x), Mathf.Floor(transform.position.y));
         Tile currTile;
+        bool lastTile = false;
+        bool tileOccupied = false;
         do
         {
             switch(spawn)
             {
                 case spawnDir.North:
                     currTilePos.y -= 1.0f;
+                    if(currTilePos.y == 3.0f)
+                    {
+                        lastTile = true;
+                    }
                     break;
 
                 case spawnDir.South:
                     currTilePos.y += 1.0f;
+                    if(currTilePos.y == 5.0f)
+                    {
+                        lastTile = true;
+                    }
                     break;
 
                 case spawnDir.West:
                     currTilePos.x += 1.0f;
+                    if(currTilePos.x == 5.0f)
+                    {
+                        lastTile = true;
+                    }
                     break;
 
                 case spawnDir.East:
                     currTilePos.x -= 1.0f;
+                    if(currTilePos.x == 3.0f)
+                    {
+                        lastTile = true;
+                    }
                     break;
                 default:
                     break;
             }
             currTile = TileManager.instance.GetTileAtPosition(currTilePos);
-            if (debug_TileOccupied)
+            tileOccupied = (currTile.plantOnTile != null);
+            if (tileOccupied || lastTile)
             {
                 dest = currTile;
             }
-        } while (dest = null);
+        } while (dest == null);
+    }
+
+    bool Destination_Check()
+    {
+        if (Mathf.Abs((dest.transform.position.x - transform.position.x)) <= 0.1f)
+        {
+            return true;
+        }
+        else
+        {
+            return false;
+        }
     }
 
     public void Lured()
@@ -167,5 +232,11 @@ public class monsters : MonoBehaviour, ITarget
             yield return new WaitForSeconds(rate);
         }
         dot = false;
+    }
+
+    IEnumerator SETSPAWNDIR()
+    {
+        yield return new WaitForSeconds(1.0f);
+        Set_Spawn_Direction();
     }
 }
