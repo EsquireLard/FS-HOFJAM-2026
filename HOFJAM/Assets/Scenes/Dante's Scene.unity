@@ -256,6 +256,51 @@ MonoBehaviour:
     m_VarianceClampScale: 0.9
     m_ContrastAdaptiveSharpening: 0
   m_Version: 2
+--- !u!1 &1000098408
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1000098410}
+  - component: {fileID: 1000098409}
+  m_Layer: 0
+  m_Name: GameManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1000098409
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1000098408}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 96b7b31160139c04da9a181e1d264a1c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::GameManager
+  GameState: 0
+--- !u!4 &1000098410
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1000098408}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 4.79132, y: 3.70013, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1569011193
 GameObject:
   m_ObjectHideFlags: 0
@@ -287,7 +332,32 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::TileManager
   width: 9
   height: 9
-  tilePrefab: {fileID: 8844915964747984335, guid: bc80ca2ad3be6b248a82a7e62aa22129, type: 3}
+  grassTile: {fileID: -7531593147297395562, guid: a565309fe05658d419062b7413d25a82, type: 3}
+  fertileTile: {fileID: -2004687260441112098, guid: e869ad31a75274b4cbb18f5536351738, type: 3}
+  cauldronTile: {fileID: 4887372178910200436, guid: 826eead782f115041bd191ebb51316df, type: 3}
+  fertileTileList:
+  - {x: 3, y: 3}
+  - {x: 4, y: 3}
+  - {x: 5, y: 3}
+  - {x: 3, y: 4}
+  - {x: 4, y: 4}
+  - {x: 5, y: 4}
+  - {x: 3, y: 5}
+  - {x: 4, y: 5}
+  - {x: 5, y: 5}
+  cauldronTileList:
+  - {x: 0, y: 0}
+  - {x: 1, y: 1}
+  - {x: 2, y: 2}
+  - {x: 6, y: 6}
+  - {x: 7, y: 7}
+  - {x: 8, y: 8}
+  - {x: 0, y: 8}
+  - {x: 1, y: 7}
+  - {x: 2, y: 6}
+  - {x: 6, y: 2}
+  - {x: 7, y: 1}
+  - {x: 8, y: 0}
   cam: {fileID: 58054746}
 --- !u!4 &1569011195
 Transform:
@@ -310,3 +380,4 @@ SceneRoots:
   m_Roots:
   - {fileID: 58054746}
   - {fileID: 1569011195}
+  - {fileID: 1000098410}
