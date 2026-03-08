@@ -23,13 +23,12 @@ public class GameManager : MonoBehaviour
     void Start()
     {
         ChangeState(GameState.GenerateGrid);
-        Time.timeScale = 1.0f;
     }
 
-    //void Update()
-    //{
-    //    mousePosition = (Vector2)Camera.main.WorldToScreenPoint(Input.mousePosition);
-    //}
+    void Update()
+    {
+        mousePosition = (Vector2)Camera.main.ScreenToWorldPoint(Input.mousePosition);
+    }
 
     public void ChangeState(GameState newState)
     {

@@ -84,6 +84,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::GrassTile
   renderer: {fileID: 1492975647344059380}
   highlight: {fileID: 6720823841218879665}
+  plantable: 1
+  plantOnTile: {fileID: 0}
   baseColor: {r: 0.39355636, g: 0.6226415, b: 0.44376677, a: 1}
   offsetColor: {r: 0.32864597, g: 0.5471698, b: 0.37762544, a: 1}
 --- !u!1 &6720823841218879665 stripped

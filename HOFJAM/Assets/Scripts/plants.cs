@@ -9,7 +9,7 @@ public class plants : MonoBehaviour, IDamage
 
     bool dmgTimerStart;
     float dmgTimer;
-    bool dragging;
+    public bool dragging;
 
     public Tile currentTile;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
@@ -35,9 +35,7 @@ public class plants : MonoBehaviour, IDamage
 
         if (dragging)
         {
-            var mousePosition = (Vector2)Camera.main.ScreenToWorldPoint(Input.mousePosition);
-            Debug.Log(mousePosition);
-            transform.position = mousePosition;
+            transform.position = GameManager.instance.mousePosition;
         }
     }
 
@@ -93,21 +91,36 @@ public class plants : MonoBehaviour, IDamage
 
     }
 
-    void OnMouseDown()
+    public void OnMouseDown() // Picking up plant
     {
+        if (GameManager.instance.selectedPlant != null)
+        {
+            GameManager.instance.selectedPlant.OnMouseUp();
+            return;
+        }
         dragging = true;
         GameManager.instance.SetSelectedUnit(this);
         gameObject.GetComponent<BoxCollider2D>().enabled = false;
     }
-    void OnMouseUp()
+    public void OnMouseUp() // Attempting to drop plant
     {
         dragging = false;
         gameObject.GetComponent<BoxCollider2D>().enabled = true;
-        if (GameManager.instance.hoverTile != null)
+        if (GameManager.instance.hoverTile != null &&
+            GameManager.instance.hoverTile.plantable &&
+            GameManager.instance.hoverTile.plantOnTile == null) // Place plant on tile if matching criteria
         {
+            if (currentTile != null) currentTile.GetComponent<BoxCollider2D>().enabled = true;
             GameManager.instance.hoverTile.SetUnit(this);
         }
-        GameManager.instance.SetSelectedUnit(null);
-
+        else if (currentTile != null) // Return plant back to previous tile if not matching criteria
+        {
+            transform.position = currentTile.transform.position;
+        }
+        else // Destroying the plant object if it didn't have a previous tile (was instatiated)
+        {
+            Destroy(gameObject);
+        }
+            GameManager.instance.SetSelectedUnit(null);
     }
 }
