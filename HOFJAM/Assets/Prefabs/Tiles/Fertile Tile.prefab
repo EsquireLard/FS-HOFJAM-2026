@@ -89,5 +89,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::FertileTile
   renderer: {fileID: 8579763831440055316}
   highlight: {fileID: 4534075218475949905}
+  plantable: 1
+  plantOnTile: {fileID: 0}
   baseColor: {r: 0.7610062, g: 0.64189893, b: 0.3948616, a: 1}
   offsetColor: {r: 0.6289307, g: 0.52366227, b: 0.30259866, a: 1}

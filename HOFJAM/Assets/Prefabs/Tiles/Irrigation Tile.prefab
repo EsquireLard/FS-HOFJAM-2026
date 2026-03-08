@@ -60,6 +60,10 @@ PrefabInstance:
       propertyPath: m_Color.r
       value: 0.38121513
       objectReference: {fileID: 0}
+    - target: {fileID: 7786032176760799182, guid: bc80ca2ad3be6b248a82a7e62aa22129, type: 3}
+      propertyPath: m_Color.a
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 7898771113467937149, guid: bc80ca2ad3be6b248a82a7e62aa22129, type: 3}
       propertyPath: m_Name
       value: Irrigation Tile
@@ -96,6 +100,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::IrrigationTile
   renderer: {fileID: 1533060879912554661}
   highlight: {fileID: 6682130611843355616}
+  plantable: 0
+  plantOnTile: {fileID: 0}
 --- !u!1 &6682130611843355616 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 3321872888645234619, guid: bc80ca2ad3be6b248a82a7e62aa22129, type: 3}

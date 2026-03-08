@@ -4,6 +4,7 @@ public abstract class Tile : MonoBehaviour
 {
     [SerializeField] protected SpriteRenderer renderer;
     [SerializeField] private GameObject highlight;
+    [SerializeField] public bool plantable;
 
     public plants plantOnTile;
 
@@ -14,37 +15,21 @@ public abstract class Tile : MonoBehaviour
     void OnMouseEnter()
     {
         highlight.SetActive(true);
+        GameManager.instance.hoverTile = this;
     }
 
     void OnMouseExit()
     {
         highlight.SetActive(false);
+        GameManager.instance.hoverTile = null;
     }
 
     void OnMouseDown()
     {
-        if (GameManager.instance.GameState != GameState.Running)
-        {
-            return;
-        }
-
-    }
-
-    void OnMouseUp()
-    {
-        Debug.Log("TileMouseUpTrigger");
-
         if (GameManager.instance.selectedPlant != null)
         {
-            plantOnTile = GameManager.instance.selectedPlant;
-            GameManager.instance.selectedPlant.transform.position = transform.position;
+            GameManager.instance.selectedPlant.OnMouseUp();
         }
-    }
-
-    void OnMouseOver()
-    {
-        Debug.Log("tileHover");
-        GameManager.instance.hoverTile = this;
     }
 
     public void SetUnit(plants unit)
@@ -53,5 +38,6 @@ public abstract class Tile : MonoBehaviour
         unit.currentTile = this;
         unit.transform.position = transform.position;
         plantOnTile = unit;
+        gameObject.GetComponent<BoxCollider2D>().enabled = false;
     }
 }
