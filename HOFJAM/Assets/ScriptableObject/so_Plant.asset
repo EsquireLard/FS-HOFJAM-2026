@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::so_plants
   prefab_: {fileID: 636902847012675500, guid: 121dd4ac4cb29994faffd5669d0dd6f6, type: 3}
   killable_: 0
-  attracts_: 0
+  attracts_: 1
   attk_: 0
   hp_: 0
   dmg_: 0
